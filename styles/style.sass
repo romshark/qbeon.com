@@ -1,0 +1,188 @@
+@import responsive
+@import container
+@import grigen
+
+@font-face
+	font-family: segoe
+	src: url(fonts/segoe.ttf)
+
+@font-face
+	font-family: segoe-light
+	src: url(fonts/segoeuil.ttf)
+
+@font-face
+	font-family: audiowide
+	src: url(fonts/audiowide.ttf)
+
+$grid12_classes: ('grid': 'grid12', 'row': 'row', 'span': 'span')
+$grid12_options: ('width': 100%, 'columns': 12, 'spacing-method': 'margin')
+$grid12_spaces: ()
+$grid12_break-points: ('thin': 767px)
++grigen-responsive-grid($grid12_classes, $grid12_options, $grid12_spaces, $grid12_break-points)
+
+
+body, html
+	margin: 0px
+	font-family: segoe
+
+.header
+	height: 4rem
+	padding-top: 16rem
+	text-align: center
+	+tiny
+		padding-top: 6rem
+	+small
+		padding-top: 6rem
+	.company
+		width: 14rem
+		display: inline-block
+		margin: auto
+		font-size: 3rem
+		line-height: 4rem
+		font-family: segoe
+		+tiny
+			width: 10rem
+			line-height: 3rem
+		+small
+			width: 10rem
+			line-height: 3rem
+		.company-name
+			float: right
+			font-family: audiowide
+			text-transform: uppercase
+			font-size: 2rem
+			+tiny
+				font-size: 1.5rem
+			+small
+				font-size: 1.5rem
+		.logo
+			float: left
+			height: 4rem
+			width: 4rem
+			+tiny
+				width: 3rem
+				height: 3rem
+			+small
+				width: 3rem
+				height: 3rem
+
+.slogan
+	margin-top: 6rem
+
+form
+	padding-left: 4rem
+	padding-right: 4rem
+	+tiny
+		padding-left: 0rem
+		padding-right: 0rem
+	+small
+		padding-left: 0rem
+		padding-right: 0rem
+
+input, textarea
+	padding: 1rem
+	width: 100%
+	margin-top: 1rem
+	font-size: 1rem
+	font-family: segoe
+	resize: vertical
+	border-radius: .2rem
+	border: 1px solid #CCC
+
+p
+	font-size: 1rem
+	line-height: 2rem
+	+tiny
+		line-height: 1.5rem
+	+small
+		line-height: 1.5rem
+
+h1
+	font-weight: normal
+	display: block
+	font-size: 1.8rem
+	color: #666
+	text-align: center
+	font-family: segoe-light
+	line-height: 3rem
+	+tiny
+		font-size: 1.5rem
+		line-height: 2.5rem
+		padding-top: 3rem
+		padding-bottom: 3rem
+	+small
+		font-size: 1.5rem
+		line-height: 2.5rem
+		padding-top: 3rem
+		padding-bottom: 3rem
+
+.feature
+	padding-top: 6rem
+	+tiny
+		padding-top: 1rem
+		padding-bottom: 1rem
+	+small
+		padding-top: 1rem
+		padding-bottom: 1rem
+	h1
+		text-align: center
+		padding-top: 1rem
+		padding-bottom: 0rem
+		.highlight
+			font-style: normal
+			font-weight: bold
+			color: black
+	.description
+		margin-top: 1rem
+		margin-bottom: 2rem
+		text-align: center
+		font-family: segoe
+		padding-left: 2rem
+		padding-right: 2rem
+		color: #666
+		+tiny
+			padding-left: 1rem
+			padding-right: 1rem
+		+small
+			padding-left: 1rem
+			padding-right: 1rem
+	.image
+		border-radius: .5rem
+		overflow: hidden
+		margin-top: 2rem
+		margin-bottom: 1rem
+		img
+			width: 100%
+
+.feature:last-of-type
+	padding-bottom: 10rem
+	+tiny
+		padding-bottom: 2rem
+	+small
+		padding-bottom: 4rem
+
+.grid12
+	margin-top: 8rem
+	+tiny
+		margin-top: 2rem
+	+small
+		margin-top: 2rem
+
+.row1, .row2, .row3, .row4, .row5
+	height: 9rem
+	padding-top: 2rem
+	text-align: center
+	+tiny
+		height: 10rem
+	+small
+		height: 10rem
+	img
+		width: 3rem
+		display: block
+		margin: auto
+	p
+		display: block
+		margin-top: 1rem
+		font-family: segoe-light
+		font-weight: bold
+		line-height: 1.5rem

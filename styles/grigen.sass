@@ -1,0 +1,122 @@
+%default-row-rules
+	position: relative
+	overflow: auto
+	overflow-x: hidden
+	overflow-y: hidden
+
+%default-span-rules
+	font-size: 1rem
+	position: relative
+	display: inline-block
+	float: left
+	height: 100%
+	box-sizing: border-box
+
+@mixin grigen-responsive-grid($classes: (), $options: (), $spaces: (), $break-points: ())
+	$classes_: ("grid": "grid", "row": "row","span": "span", "break": "break")
+	$options_: ("width": 100%, "columns": 12, "spacing-method": "margin")
+	$spaces_: ("gutter": 0%, "left": 0%, "right": 0%)
+	$break-points_: ("thin": 0px)
+	$classes_: map-merge($classes_, $classes)
+	$options_: map-merge($options_, $options)
+	$spaces_: map-merge($spaces_, $spaces)
+	$break-points_: map-merge($break-points_, $break-points)
+
+	$grid-class-name: map-get($classes_, "grid")
+	$row-class-name: map-get($classes_, "row")
+	$span-class-name-prefix: map-get($classes_, "span")
+	$break-class-name-prefix: map-get($classes_, "break")
+	$grid-width: map-get($options_, "width")
+	$columns: map-get($options_, "columns")
+	$spacing-method: map-get($options_, "spacing-method")
+	$gutter: map-get($spaces_, "gutter")
+	$space-left: map-get($spaces_, "left")
+	$space-right: map-get($spaces_, "right")
+	$break-point-thin: map-get($break-points_, "thin")
+
+	//check types
+	@if $spacing-method != "margin" and $spacing-method != "padding"
+		@error "expected either margin or padding for parameter grid-class-name, got: #{$spacing-method}"
+	@if type_of($grid-class-name) != string
+		@error "expected string for parameter grid-class-name"
+	@if type_of($span-class-name-prefix) != string
+		@error "expected string for parameter span-class-name-prefix"
+	@if type_of($break-class-name-prefix) != string
+		@error "expected string for parameter break-class-name-prefix"
+	@if type_of($grid-width) != number
+		@error "expected number for parameter grid-width"
+	@if type_of($columns) != number
+		@error "expected number for parameter columns"
+	@if type_of($gutter) != number
+		@error "expected number for parameter gutter"
+	@if type_of($space-left) != number
+		@error "expected number for parameter space-left"
+	@if type_of($space-right) != number
+		@error "expected number for parameter space-right"
+	@if $columns < 2
+		@error "a grid must be made of at least 2 columns"
+	//calculate column width
+	$space-for-gutters: ($columns - 1) * $gutter
+	$column-space-size: $gutter / 2
+	//generate grid class
+	.#{$grid-class-name}
+		box-sizing: border-box
+		position: relative
+		display: block
+		width: $grid-width
+		overflow: auto
+		overflow-x: hidden
+		overflow-y: hidden
+		font-size: 0px
+		@for $itrRow from 1 through $columns
+			//generate row class
+			.#{$row-class-name}#{$itrRow}
+				width: $grid-width
+				@extend %default-row-rules
+				@for $itrSpan from 1 through $itrRow
+					$column-width: 100% / $itrRow
+					//generate span class
+					.#{$span-class-name-prefix}#{$itrSpan}
+						@extend %default-span-rules
+						width: $column-width * $itrSpan
+						@if $spacing-method == "padding"
+							padding-left: $column-space-size
+							padding-right: $column-space-size
+						@else
+							width: $column-width * $itrSpan - $column-space-size * 2
+							margin-left: $column-space-size
+							margin-right: $column-space-size
+					.#{$span-class-name-prefix}#{$itrSpan}:first-child
+						@if $spacing-method == "padding"
+							padding-left: $space-left
+							padding-right: $column-space-size
+						@else
+							width: $column-width * $itrSpan - ($column-space-size + $space-left)
+							margin-left: $space-left
+							margin-right: $column-space-size
+					.#{$span-class-name-prefix}#{$itrSpan}:last-child
+						@if $spacing-method == "padding"
+							padding-left: $column-space-size
+							padding-right: $space-right
+						@else
+							width: $column-width * $itrSpan - ($column-space-size + $space-right)
+							margin-left: $column-space-size
+							margin-right: $space-right
+				//generate row break class
+				@each $break-point, $break-point-width in $break-points
+					&.#{$break-class-name-prefix}-#{$break-point}
+						@for $itrSpan from 1 through $itrRow
+							.#{$span-class-name-prefix}#{$itrSpan},
+							.#{$span-class-name-prefix}#{$itrSpan}:first-child,
+							.#{$span-class-name-prefix}#{$itrSpan}:last-child
+								@media screen and (max-width: $break-point-width)
+									display: block
+									width: 100%
+									margin-left: 0px
+									@if $spacing-method == "padding"
+										padding-left: $space-left
+										padding-right: $space-right
+									@else
+										width: 100% - $space-left - $space-right
+										margin-left: $space-left
+										margin-right: $space-right
