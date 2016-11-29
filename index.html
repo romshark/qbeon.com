@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<title>Qbeon</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="index.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -387,12 +388,24 @@
 			<p class="description hide-small">You have an interesting offer or simply want to get in touch? Let's talk about what we can achieve together!</p>
 			<p class="description hide-full">You have an interesting offer or simply want to get in touch?<br>Let's talk about what<br>we can achieve together!</p>
 
-			<form>
-				<input type="text" name="email" placeholder="Your Name and/or Company">
-				<input type="text" name="email" placeholder="Your Email Address">
-				<textarea name="message" placeholder="Your Message" rows="6"></textarea>
-				<input type="submit" value="Send">
-			</form>
+			<div class="form">
+				<input type="text" name="email" id="form-name" placeholder="Your Name and/or Company">
+				<div id="form-wrong-name" class="notification error hidden">Please provide your name and/or company</div>
+
+				<input type="text" name="email" id="form-email" placeholder="Your Email Address">
+				<div id="form-wrong-email" class="notification error hidden">Please provide your email address</div>
+
+				<textarea name="message" id="form-message" placeholder="Your Message" rows="6"></textarea>
+				<div id="form-wrong-message" class="notification error hidden">Please provide a message for us</div>
+				
+				<button onclick="send();">Send</button>
+				
+				<div id="form-sending" class="notification neutral hidden">Your message is being send...</div>
+
+				<div id="form-error" class="notification error hidden">Something went wrong!<br>Please contact us manually over contact@qbeon.com</div>
+
+				<div id="form-success" class="notification success hidden">Thank you for contacting us!<br>we will reply to you as soon as possible.</div>
+			</div>
 		</div>
 	</div>
 </body>
