@@ -93,3 +93,11 @@ function send() {
 		sendmail();
 	}
 }
+
+var qbeon = angular.module('qbeon', []);
+qbeon.controller('MainController', function(
+	$scope,
+	$window
+) {
+	$scope.locale = 'en_US'
+})
