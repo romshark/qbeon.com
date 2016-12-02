@@ -1,6 +1,8 @@
+@import util
 @import responsive
 @import container
 @import grigen
+@import navigation
 
 @font-face
 	font-family: segoe
@@ -20,7 +22,6 @@ $grid12_spaces: ()
 $grid12_break-points: ('thin': 767px)
 +grigen-responsive-grid($grid12_classes, $grid12_options, $grid12_spaces, $grid12_break-points)
 
-
 body, html
 	margin: 0px
 	font-family: segoe
@@ -30,7 +31,7 @@ body, html
 	padding-top: 16rem
 	text-align: center
 	+small
-		padding-top: 6rem
+		padding-top: 8rem
 	.company
 		width: 14rem
 		display: inline-block

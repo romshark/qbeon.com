@@ -1,0 +1,9 @@
+@mixin transition($transition-property, $time, $method)
+	-webkit-transition: $transition-property $time $method
+	-moz-transition: $transition-property $time $method
+	-ms-transition: $transition-property $time $method
+	-o-transition: $transition-property $time $method
+	transition: $transition-property $time $method
+
+@mixin default_transition
+	+transition(all, 0.2s, cubic-bezier(0.250, 0.460, 0.450, 0.940))

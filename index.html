@@ -41,6 +41,7 @@
 	<meta name="twitter:image" content="https://qbeon.com/images/qbeon_splash.png"/>
 </head>
 <body ng-controller="MainController">
+	<ng-include src="'/fragments/navigation.html'"></ng-include>
 	<ng-include ng-show="locale == 'de_DE'" src="'/fragments/main_de_DE.html'"></ng-include>
 	<ng-include ng-show="locale == 'en_US'" src="'/fragments/main_en_US.html'"></ng-include>
 </body>

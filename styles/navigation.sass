@@ -1,0 +1,94 @@
+.navigation
+	+small
+		display: none
+	position: absolute
+	left: 0px
+	top: 0px
+	display: block
+	width: 100%
+	height: 8rem
+	line-height: 8rem
+	padding-left: 2rem
+	padding-right: 2rem
+	box-sizing: border-box
+	z-index: 1
+	.company
+		float: left
+		.logo
+			float: left
+			display: inline-block
+			margin-top: 3.25rem
+			width: 1.5rem
+			height: 1.5rem
+			img
+				width: 100%
+				position: relative
+				top: 0px
+				float: left
+		span
+			float: left
+			font-family: audiowide
+			font-size: 1rem
+			margin-left: .5rem
+			height: 8rem
+			line-height: 8rem
+			text-transform: uppercase
+	ul
+		float: right
+		list-style: none
+		margin: 0px
+		padding: 0px
+		li
+			float: right
+			display: inline-block
+			padding-left: 1rem
+			padding-right: 1rem
+			height: 8rem
+			line-height: 8rem
+			cursor: pointer
+			+default_transition
+		li:hover
+			color: rgba(0,0,0,.5)
+
+.navigation-small
+	position: absolute
+	left: 0px
+	top: 0px
+	display: block
+	width: 100%
+	height: 6rem
+	line-height: 6rem
+	padding-left: 2rem
+	padding-right: 2rem
+	box-sizing: border-box
+	z-index: 1
+	+full
+		display: none
+	.company
+		float: left
+		.logo
+			float: left
+			display: inline-block
+			margin-top: 2.25rem
+			width: 1.5rem
+			height: 1.5rem
+			img
+				width: 100%
+				position: relative
+				top: 0px
+				float: left
+		span
+			float: left
+			font-family: audiowide
+			font-size: 1rem
+			margin-left: .5rem
+			height: 6rem
+			line-height: 6rem
+			text-transform: uppercase
+	.lang
+		float: right
+		display: inline-block
+		height: 6rem
+		line-height: 6rem
+		cursor: pointer
+		+default_transition
