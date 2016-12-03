@@ -9,10 +9,40 @@
 		<ul>
 			<li>ENG</li>
 			<li>
-				<a href="#qube-os" du-smooth-scroll du-scrollspy>QubeOS</a>
+				<a
+					ng-show="locale == 'en_US'"
+					href="#qube-os_en_US"
+					du-smooth-scroll
+					du-scrollspy
+					duration="500">
+					QubeOS
+				</a>
+				<a
+					ng-show="locale == 'de_DE'"
+					href="#qube-os_de_DE"
+					du-smooth-scroll
+					du-scrollspy
+					duration="500">
+					QubeOS
+				</a>
 			</li>
 			<li>
-				<a href="#qube" du-smooth-scroll du-scrollspy>Qube</a>
+				<a
+					ng-show="locale == 'en_US'"
+					href="#qube_en_US"
+					du-smooth-scroll
+					du-scrollspy
+					duration="500">
+					Qube
+				</a>
+				<a
+					ng-show="locale == 'de_DE'"
+					href="#qube_de_DE"
+					du-smooth-scroll
+					du-scrollspy
+					duration="500">
+					Qube
+				</a>
 			</li>
 		</ul>
 	</div>

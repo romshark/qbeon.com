@@ -94,7 +94,7 @@ function send() {
 	}
 }
 
-var qbeon = angular.module('qbeon', []);
+var qbeon = angular.module('qbeon', ['duScroll']);
 qbeon.controller('MainController', function(
 	$scope,
 	$window
