@@ -8,7 +8,7 @@ qbeon.controller('MainController', function(
 	$scope,
 	$window
 ) {
-	$scope.locale = 'de_DE';
+	$scope.locale = 'en_US';
 })
 
 qbeon.controller('ArticleController', function(
