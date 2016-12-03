@@ -1,97 +1,6 @@
-function removeClass(object, clName) {
-	var regex = new RegExp(clName, "g");
-	object.className = object.className.replace(regex, '');
-}
-
-function addClass(object, clName) {
-	if(object.className.search(new RegExp(clName, "g")) != -1) {
-		return;
-	}
-	object.className += ' ' + clName;
-}
-
-function getFields() {
-	var fields = {};
-	fields['name'] = document.getElementById("form-name");
-	fields['email'] = document.getElementById("form-email");
-	fields['message'] = document.getElementById("form-message");
-	return fields;
-}
-
-function getNotifications() {
-	var notifications = {};
-	notifications['name'] = document.getElementById("form-wrong-name");
-	notifications['email'] = document.getElementById("form-wrong-email");
-	notifications['message'] = document.getElementById("form-wrong-message");
-	notifications['sending'] = document.getElementById("form-sending");
-	notifications['success'] = document.getElementById("form-success");
-	notifications['error'] = document.getElementById("form-error");
-	return notifications;
-}
-
-function resetFields() {
-	fields = getFields();
-	fields['name'].value = '';
-	fields['email'].value = '';
-	fields['message'].value = '';
-}
-
 function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-function sendmail(name, email, message) {
-	var fields = getFields();
-	var notifications = getNotifications();
-	var request = new XMLHttpRequest();
-	request.open("GET","/contact-inquiry?name=" + fields['name'].value + '&email=' + fields['email'].value + '&message=' + fields['message'].value);
-	removeClass(notifications['sending'], 'hidden');
-	request.addEventListener('load', function(event) {
-		addClass(notifications['sending'], 'hidden');
-		if(request.status == 201) {
-			//sent
-			resetFields();
-			removeClass(notifications['success'], 'hidden');
-		} else {
-			//could not send inquiry
-			removeClass(notifications['error'], 'hidden');
-		}
-	});
-	request.send();
-}
-
-function send() {
-	var fields = getFields();
-	var notifications = getNotifications();
-	var error = false;
-	//verify name
-	if(fields['name'].value.length < 1) {
-		removeClass(notifications['name'], 'hidden');
-		error = true;
-	} else {
-		addClass(notifications['name'], 'hidden');
-	}
-
-	//verify email
-	if(!validateEmail(fields['email'].value)) {
-		removeClass(notifications['email'], 'hidden');
-		error = true;
-	} else {
-		addClass(notifications['email'], 'hidden');
-	}
-
-	//verify message
-	if(fields['message'].value.length < 1) {
-		removeClass(notifications['message'], 'hidden');
-		error = true;
-	} else {
-		addClass(notifications['message'], 'hidden');
-	}
-
-	if(!error) {
-		sendmail();
-	}
+	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(email);
 }
 
 var qbeon = angular.module('qbeon', ['duScroll']);
@@ -99,5 +8,69 @@ qbeon.controller('MainController', function(
 	$scope,
 	$window
 ) {
-	$scope.locale = 'en_US'
+	$scope.locale = 'de_DE';
+})
+
+qbeon.controller('ArticleController', function(
+	$scope,
+	$window
+) {
+	$scope.formName = '';
+	$scope.formEmail = '';
+	$scope.formMessage = '';
+	$scope.notificationNameWrong = false;
+	$scope.notificationEmailWrong = false;
+	$scope.notificationMessageWrong = false;
+	$scope.notificationSending = false;
+	$scope.notificationSuccess = false;
+	$scope.notificationFailure = false;
+
+	$scope.resetFields = function() {
+		$scope.formName = '';
+		$scope.formEmail = '';
+		$scope.formMessage = '';
+	}
+
+	$scope.sendMessage = function() {
+		var error = false;
+		//verify name
+		if($scope.formName.length < 1) {
+			$scope.notificationNameWrong = true;
+			error = true;
+		} else {
+			$scope.notificationNameWrong = false;
+		}
+
+
+		//verify email
+		if(!validateEmail($scope.formEmail)) {
+			$scope.notificationEmailWrong = true;
+			error = true;
+		} else {
+			$scope.notificationEmailWrong = false;
+		}
+
+		//verify message
+		if($scope.formMessage.length < 1) {
+			$scope.notificationMessageWrong = true;
+			error = true;
+		} else {
+			$scope.notificationMessageWrong = false;
+		}
+
+		if(!error) {
+			var request = new XMLHttpRequest();
+			$scope.notificationSending = true;
+			request.onreadystatechange = function() {
+				$scope.notificationSending = false;
+				if(request.status == 201) {
+					$scope.resetFields();
+					$scope.notificationSuccess = true;
+				} else {
+					$scope.notificationFailure = true;
+				}
+			};
+			request.open('GET', 'contact-inquiry?name=' + $scope.formName + '&email=' + $scope.formEmail + '&message=' + $scope.formMessage);
+		}
+	}
 })

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="ArticleController">
 	<div class="header">
 		<div class="company">
 			<img alt="Qbeon Logo" class="logo" src="images/qbeon.png">
@@ -353,22 +353,22 @@
 		<p class="description hide-full">You have an interesting offer or simply want to get in touch?<br>Let's talk about what<br>we can achieve together!</p>
 
 		<div class="form">
-			<input type="text" name="email" id="form-name" placeholder="Your Name and/or Company">
-			<div id="form-wrong-name" class="notification error hidden">Please provide your name and/or company</div>
+			<input type="text" ng-model="formName" placeholder="Your Name and/or Company">
+			<div ng-show="notificationNameWrong" class="notification error">Please provide your name and/or company</div>
 
-			<input type="text" name="email" id="form-email" placeholder="Your Email Address">
-			<div id="form-wrong-email" class="notification error hidden">Please provide your email address</div>
+			<input type="text" ng-model="formEmail" placeholder="Your Email Address">
+			<div ng-show="notificationEmailWrong" class="notification error">Please provide your email address</div>
 
-			<textarea name="message" id="form-message" placeholder="Your Message" rows="6"></textarea>
-			<div id="form-wrong-message" class="notification error hidden">Please provide a message for us</div>
+			<textarea ng-model="formMessage" placeholder="Your Message" rows="6"></textarea>
+			<div ng-show="notificationMessageWrong" class="notification error">Please provide a message for us</div>
 			
-			<button onclick="send();">Send</button>
+			<button ng-click="sendMessage()">Send</button>
 			
-			<div id="form-sending" class="notification neutral hidden">Your message is being send...</div>
+			<div ng-show="notificationSending" class="notification neutral">Your message is being send...</div>
 
-			<div id="form-error" class="notification error hidden">Something went wrong!<br>Please contact us manually over contact@qbeon.com</div>
+			<div ng-show="notificationFailure" class="notification error">Something went wrong!<br>Please contact us manually over contact@qbeon.com</div>
 
-			<div id="form-success" class="notification success hidden">Thank you for contacting us!<br>we will reply to you as soon as possible.</div>
+			<div ng-show="notificationSuccess" class="notification success">Thank you for contacting us!<br>we will reply to you as soon as possible.</div>
 		</div>
 	</div>
 </div>
