@@ -47,9 +47,13 @@
 			height: 8rem
 			line-height: 8rem
 			cursor: pointer
-			+default_transition
+			a
+				+default_transition
+				text-decoration: none
+				color: black
 		li:hover
-			color: rgba(0,0,0,.5)
+			a
+				color: rgba(0,0,0,.5)
 
 .navigation-small
 	position: absolute
