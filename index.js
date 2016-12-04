@@ -3,18 +3,26 @@ function validateEmail(email) {
 	return re.test(email);
 }
 
-var qbeon = angular.module('qbeon', ['duScroll', 'ngAnimate']);
+var qbeon = angular.module('qbeon', ['duScroll', 'ngAnimate', 'ngCookies']);
 qbeon.controller('MainController', function(
 	$scope,
-	$window
+	$window,
+	$cookies
 ) {
 	window.scrollTo(0,0);
-	$scope.langSelector = true;
-	$scope.modalOpen = true;
-	$scope.locale = 'en_US';
 	$scope.locales = {
 		'en_US': 'English',
 		'de_DE': 'Deutsch'
+	}
+	
+	$scope.locale = $cookies.get('lang');
+	if($scope.locale == null) {
+		$scope.locale = 'en_US';
+		$scope.langSelector = true;
+		$scope.modalOpen = true;
+	} else {
+		$scope.langSelector = false;
+		$scope.modalOpen = false;
 	}
 
 	$scope.showLangSelector = function() {
@@ -30,6 +38,7 @@ qbeon.controller('MainController', function(
 		$scope.langSelector = false;
 		$scope.locale = locale;
 		$scope.modalOpen = false;
+		$cookies.put('lang', locale);
 	}
 })
 
