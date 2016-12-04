@@ -41,7 +41,11 @@
 	<meta name="twitter:description" content="Cloud computing and personal data storage technologies"/>
 	<meta name="twitter:image" content="https://qbeon.com/images/qbeon_splash.png"/>
 </head>
-<body ng-controller="MainController">
+<body ng-controller="MainController" ng-class="{unscrollable: modalOpen}">
+	<ng-include
+		src="'/fragments/language-selector.html'"
+		ng-show="langSelector"
+		class="language-selector"></ng-include>
 	<ng-include src="'/fragments/navigation.html'"></ng-include>
 	<ng-include ng-show="locale == 'de_DE'" src="'/fragments/main_de_DE.html'"></ng-include>
 	<ng-include ng-show="locale == 'en_US'" src="'/fragments/main_en_US.html'"></ng-include>

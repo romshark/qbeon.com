@@ -15,3 +15,24 @@
 
 @mixin default_transition
 	+transition(all, 0.2s, cubic-bezier(0.250, 0.460, 0.450, 0.940))
+
+.unselectable
+	+selectable(none)
+
+.unscrollable
+	overflow: hidden
+
+.center-container
+	position: relative
+	height: 100%
+
+.center-container:before
+	content: ''
+	display: inline-block
+	height: 100%
+	vertical-align: middle
+
+
+.centered
+	display: inline-block
+	vertical-align: middle

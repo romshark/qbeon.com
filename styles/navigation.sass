@@ -11,6 +11,7 @@
 	padding-left: 2rem
 	padding-right: 2rem
 	box-sizing: border-box
+	overflow: hidden
 	z-index: 1
 	.company
 		float: left
@@ -47,13 +48,14 @@
 			height: 8rem
 			line-height: 8rem
 			cursor: pointer
-			a
+			overflow: hidden
+			a, span
 				+default_transition
 				text-decoration: none
 				color: black
 				display: block
 		li:hover
-			a
+			a, span
 				color: rgba(0,0,0,.5)
 
 .navigation-small

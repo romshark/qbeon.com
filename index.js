@@ -3,12 +3,34 @@ function validateEmail(email) {
 	return re.test(email);
 }
 
-var qbeon = angular.module('qbeon', ['duScroll']);
+var qbeon = angular.module('qbeon', ['duScroll', 'ngAnimate']);
 qbeon.controller('MainController', function(
 	$scope,
 	$window
 ) {
+	window.scrollTo(0,0);
+	$scope.langSelector = true;
+	$scope.modalOpen = true;
 	$scope.locale = 'en_US';
+	$scope.locales = {
+		'en_US': 'English',
+		'de_DE': 'Deutsch'
+	}
+
+	$scope.showLangSelector = function() {
+		$scope.langSelector = true;
+		$scope.modalOpen = true;
+		window.scrollTo(0,0);
+	}
+
+	$scope.selectLanguage = function(locale) {
+		if(!(locale in $scope.locales)) {
+			return;
+		}
+		$scope.langSelector = false;
+		$scope.locale = locale;
+		$scope.modalOpen = false;
+	}
 })
 
 qbeon.controller('ArticleController', function(
