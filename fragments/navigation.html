@@ -10,6 +10,7 @@
 			<li ng-click="showLangSelector()">
 				<span ng-show="locale == 'en_US'">EN</span>
 				<span ng-show="locale == 'de_DE'">DE</span>
+				<span ng-show="locale == 'ru_RU'">RU</span>
 			</li>
 			<li>
 				<a
@@ -23,6 +24,14 @@
 				<a
 					ng-show="locale == 'de_DE'"
 					href="#qube-os_de_DE"
+					du-smooth-scroll
+					du-scrollspy
+					duration="1000">
+					QubeOS
+				</a>
+				<a
+					ng-show="locale == 'ru_RU'"
+					href="#qube-os_ru_RU"
 					du-smooth-scroll
 					du-scrollspy
 					duration="1000">
@@ -46,6 +55,14 @@
 					duration="1000">
 					Qube
 				</a>
+				<a
+					ng-show="locale == 'ru_RU'"
+					href="#qube_ru_RU"
+					du-smooth-scroll
+					du-scrollspy
+					duration="1000">
+					Qube
+				</a>
 			</li>
 		</ul>
 	</div>
@@ -60,5 +77,6 @@
 	<div class="lang" ng-click="showLangSelector()">
 		<span ng-show="locale == 'en_US'">EN</span>
 		<span ng-show="locale == 'de_DE'">DE</span>
+		<span ng-show="locale == 'ru_RU'">RU</span>
 	</div>
 </div>

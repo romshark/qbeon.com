@@ -83,6 +83,7 @@ input, textarea, button
 
 button
 	+selectable(none)
+	background-color: rgb(250,250,250)
 
 p
 	font-size: 1rem
@@ -129,17 +130,21 @@ h1
 			padding-left: 1rem
 			padding-right: 1rem
 	.image
-		border-radius: .5rem
+		border-radius: .25rem
 		overflow: hidden
 		margin-top: 2rem
 		margin-bottom: 1rem
 		img
 			width: 100%
+			display: block
 
 .feature:last-of-type
 	padding-bottom: 10rem
 	+small
 		padding-bottom: 4rem
+
+.feature.contact-form
+	padding-top: 2rem
 
 .grid12
 	margin-top: 8rem
@@ -184,3 +189,222 @@ h1
 
 .notification.hidden
 	display: none
+
+.app-preview
+	ul
+		display: block
+		width: 100%
+		list-style: none
+		text-align: center
+		margin: 0px
+		padding: 0px
+		border-bottom: 1px solid #DDD
+		cursor: default
+		li
+			display: inline-block
+			padding: 1.5rem
+			cursor: pointer
+			border-bottom: 2px solid rgba(0,0,0,0)
+			color: rgba(0,0,0,.3)
+			+default_transition
+			+small
+				padding: 1rem
+				padding-top: 1.5rem
+				padding-bottom: 1.5rem
+		li.selected
+			border-bottom: 2px solid #000
+			color: rgba(0,0,0,1)
+	.app-desc
+		position: relative
+		height: auto
+		width: 100%
+		height: 12rem
+		p
+			position: absolute
+			width: 100%
+			margin: 0px
+			margin-top: 1rem
+			text-align: center
+			+default_transition
+		p.ng-hide
+			display: none
+			opacity: 0
+		p.ng-hide-add, p.ng-hide-remove
+			display: inline-block !important
+
+
+.slide
+	outline: none
+	height: auto
+	img
+		width: 100%
+	span
+		position: absolute
+		width: 100%
+		font-size: 1.5rem
+		color: red
+
+.feature.layers
+	position: relative
+	padding-top: 8rem
+	.layers-visualization
+		+selectable(none)
+		width: 24rem
+		height: 25.2rem
+		position: relative
+		margin: auto
+		margin-top: 4rem
+		margin-bottom: 2rem
+		+small
+			width: 12rem
+			height: 12.6rem
+		img
+			width: 100%
+			position: absolute
+		img.ng-hide
+			display: none
+			opacity: 0
+			transform: translate(0, -1rem)
+		img.ng-hide-add, img.ng-hide-remove
+			transition: 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) all
+			display: inline-block !important
+		img.apps
+			z-index: 5
+			top: 0rem
+			+small
+				top: 0rem
+		img.qubeos
+			z-index: 4
+			top: 2.6rem
+			+small
+				top: 1.3rem
+		img.middleware
+			z-index: 3
+			top: 6.4rem
+			+small
+				top: 3.2rem
+		img.hypervisor
+			z-index: 2
+			top: 9rem
+			+small
+				top: 4.5rem
+		img.machines
+			z-index: 1
+			top: 12rem
+			+small
+				top: 6rem
+	.layer-name
+		position: relative
+		height: 3rem
+		line-height: 3rem
+		cursor: pointer
+		h1
+			+selectable(none)
+			width: 100%
+			position: absolute
+			margin: 0rem
+			padding: 0rem
+			text-align: center
+			+default_transition
+		h1.ng-hide
+			display: none
+			opacity: 0
+		h1.ng-hide-add, h1.ng-hide-remove
+			display: inline-block !important
+
+		.indicator
+			width: 1rem
+			height: 1rem
+			background-color: #CCC
+			display: inline-block
+			border-radius: .5rem
+			margin-right: .5rem
+		.indicator.apps
+			background-color: #ffd38d
+		.indicator.qubeos
+			background-color: #0069cb
+		.indicator.middleware
+			background-color: #fd7e7e
+		.indicator.hypervisor
+			background-color: #8d6cb6
+		.indicator.machines
+			background-color: #c0c0c0
+	.layer-indicator
+		text-align: center
+		bottom: 0rem
+		height: 4rem
+		line-height: 4rem
+		.layer-indicator-container
+			position: relative
+			text-align: center
+			display: inline-block
+			width: 9rem
+			height: 1rem
+			.apps, .qubeos, .middleware, .hypervisor, .machines
+				cursor: pointer
+				width: 2rem
+				height: 2rem
+				position: absolute
+				display: inline-block
+				.indic
+					width: .5rem
+					height: .5rem
+					position: absolute
+					display: inline-block
+					border-radius: .25rem
+					background-color: #EEE
+					top: 0.75rem
+					margin-left: -0.25rem
+					+default_transition
+			.apps.selected,
+			.qubeos.selected,
+			.middleware.selected,
+			.hypervisor.selected,
+			.machines.selected
+				.indic			
+					width: 1rem
+					height: 1rem
+					border-radius: .5rem
+					top: .5rem
+					margin-left: -.5rem
+			.apps.visible
+				.indic
+					background-color: #ffd38d
+			.qubeos.visible
+				.indic
+					background-color: #0069cb
+			.middleware.visible
+				.indic
+					background-color: #fd7e7e
+			.hypervisor.visible
+				.indic
+					background-color: #8d6cb6
+			.machines
+				.indic
+					background-color: #c0c0c0
+			.machines
+				left: 0rem
+			.hypervisor
+				left: 2rem
+			.middleware
+				left: 4rem
+			.qubeos
+				left: 6rem
+			.apps
+				left: 8rem
+	.layer-desc
+		position: relative
+		width: 100%
+		height: 12rem
+		p
+			width: 100%
+			position: absolute
+			margin: 0px
+			margin-top: 1rem
+			text-align: center
+			+default_transition
+		p.ng-hide
+			display: none
+			opacity: 0
+		p.ng-hide-add, p.ng-hide-remove
+			display: inline-block !important
