@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="qbeon">
 <head>
-
+	<base href="/">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<title>Qbeon</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript" src="js/angular-scroll.js"></script>
 	<script type="text/javascript" src="js/angular-slick.js"></script>
+	<script type="text/javascript" src="js/ui-router.js"></script>
 	<script type="text/javascript" src="index.js"></script>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
@@ -51,10 +52,6 @@
 		src="'/fragments/language-selector.html'"
 		ng-show="langSelector"
 		class="language-selector"></ng-include>
-	<ng-include src="'/fragments/navigation.html'"></ng-include>
-	<ng-include ng-show="locale == 'de_DE'" src="'/fragments/main_de_DE.html'"></ng-include>
-	<ng-include ng-show="locale == 'en_US'" src="'/fragments/main_en_US.html'"></ng-include>
-	<ng-include ng-show="locale == 'ru_RU'" src="'/fragments/main_ru_RU.html'"></ng-include>
-	<ng-include src="'/fragments/footer.html'"></ng-include>
+	<div ui-view class="viewport"></div>
 </body>
 </html>

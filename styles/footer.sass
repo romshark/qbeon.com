@@ -4,10 +4,14 @@
 	padding-bottom: 6rem
 	+small
 		padding-bottom: 3rem
-	ul
+	.imprint
+		text-decoration: none
+		color: #cccccc
+	.social, .locations
 		margin: 0px
 		padding: 0px
 		list-style: none
+	.social
 		li
 			display: inline-block
 			a
@@ -24,3 +28,16 @@
 		li:hover
 			a
 				color: black
+	.locations
+		margin-top: 1rem
+		margin-bottom: 1rem
+		li
+			display: inline-block
+			a
+				+default_transition
+				padding: 1rem
+				text-decoration: none
+				color: #cccccc
+				cursor: pointer
+			a:hover
+				color: #000

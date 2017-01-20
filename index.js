@@ -3,15 +3,56 @@ function validateEmail(email) {
 	return re.test(email);
 }
 
-var qbeon = angular.module('qbeon', ['duScroll', 'ngAnimate', 'ngTouch', 'ngCookies', 'slickCarousel']);
+var qbeon = angular.module('qbeon', [
+	'duScroll',
+	'ngAnimate',
+	'ngTouch',
+	'ngCookies',
+	'slickCarousel',
+	'ui.router'
+]);
 
 qbeon.run([
 '$rootScope',
+'$state',
+'$stateParams',
 function(
-	$rootScope
+	$rootScope,
+	$state,
+	$stateParams
 ) {
+	$rootScope.$state = $state;
+	$rootScope.$stateParams = $stateParams;
+	$rootScope.$on('$stateChangeStart', function(evt, to, params) {
+		if(to.redirect) {
+			evt.preventDefault();
+			$state.go(to.redirect, params);
+		}
+	})
 }])
 
+qbeon.config([
+'$urlRouterProvider',
+'$stateProvider',
+'$locationProvider',
+function(
+	$urlRouterProvider,
+	$stateProvider,
+	$locationProvider
+) {
+	$urlRouterProvider.otherwise('/');
+	$locationProvider.html5Mode(true).hashPrefix('!');
+
+	$stateProvider
+	.state('home', {
+		url: '/',
+		templateUrl: 'fragments/home.html',
+	})
+	.state('imprint', {
+		url: '/imprint',
+		templateUrl: 'fragments/imprint.html',
+	});
+}])
 
 qbeon.controller('MainController', function(
 	$scope,
