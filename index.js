@@ -16,10 +16,12 @@ qbeon.run([
 '$rootScope',
 '$state',
 '$stateParams',
+'$window',
 function(
 	$rootScope,
 	$state,
-	$stateParams
+	$stateParams,
+	$window
 ) {
 	$rootScope.$state = $state;
 	$rootScope.$stateParams = $stateParams;
@@ -29,6 +31,11 @@ function(
 			$state.go(to.redirect, params);
 		}
 	})
+	$rootScope.$on('$viewContentLoaded', function(evt) {
+		if($window.scrollY > 0) {
+			$("html, body").animate({scrollTop: 0}, 800);
+		}
+	});
 }])
 
 qbeon.config([
